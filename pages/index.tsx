@@ -1,5 +1,9 @@
 import React, { ReactElement } from 'react';
+import Background from '@components/background';
 
-const Home = (): ReactElement => <div>Home</div>;
-
+const Home = (): ReactElement => (
+  <>
+    <Background />
+  </>
+);
 export default Home;
