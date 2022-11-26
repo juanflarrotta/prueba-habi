@@ -38,10 +38,17 @@ $extraBold: 'Montserrat-ExtraBold';
 //colores
 $color-white: #ffffff;
 $color-black: #252129;
-$color-primary: #6a06fa;
-$color-secondary: #66f7db;
-$color-tertiary: #d6f3ff;
-$color-quaternary: #32c1ff;
+$color-first: #6a06fa;
+$color-second: #66f7db;
+$color-third: #d6f3ff;
+$color-fourth: #32c1ff;
+$color-fifth: #2e1253;
+$color-sixth: #775e9d;
+
+//breakpoint
+$mobile: 600px;
+$tablet: 1024px;
+$desktop: 1920px;
 
 //mixins
 @mixin fontSize($number) {
