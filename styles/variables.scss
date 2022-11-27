@@ -39,19 +39,35 @@ $extraBold: 'Montserrat-ExtraBold';
 $color-white: #ffffff;
 $color-black: #252129;
 $color-first: #6a06fa;
-$color-second: #66f7db;
+$color-second: #666666;
 $color-third: #d6f3ff;
 $color-fourth: #32c1ff;
 $color-fifth: #2e1253;
 $color-sixth: #775e9d;
 
-//breakpoint
+//breakpoints
 $mobile: 600px;
 $tablet: 1024px;
 $desktop: 1920px;
 
+//Proportion
+$base: 8;
+
+//functions
+@function size($num) {
+    @return $num * $base;
+}
+
+@function sizeUnit($num, $unit) {
+    @return $num * $base+$unit;
+}
+
 //mixins
 @mixin fontSize($number) {
     font-size: $number + rem;
-    font-size: $number * 16 + px;
+    font-size: $number * size(2) + px;
 }
+
+//styles gloabals
+$border-radius: sizeUnit(13, px);
+$border-btn: sizeUnit(0.2, px);

@@ -1,0 +1,61 @@
+@import '../../styles/variables.scss';
+
+.btn {
+    background: $color-first;
+    border: $border-btn solid $color-white;
+    padding: sizeUnit(1, px) sizeUnit(4, px);
+    border-radius: $border-radius;
+    cursor: pointer;
+    min-width: sizeUnit(25, px);
+
+    &:hover {
+        background: $color-sixth;
+    }
+
+    &:active {
+        background: $color-first;
+    }
+
+    &__text {
+        @include fontSize(1.5);
+    }
+
+    &--bottom {
+        margin-bottom: sizeUnit(5, px);
+        width: fit-content;
+    }
+
+    &--back {
+        background: transparent;
+        border: none;
+        padding: size(0);
+        align-self: start;
+        min-width: auto;
+
+        .btn__text {
+            @include fontSize(1);
+            margin-left: sizeUnit(1, px);
+        }
+
+        &:hover {
+            background: transparent;
+            color: $color-first;
+            transform: translate(0, 0);
+
+            svg {
+                fill: $color-first;
+            }
+        }
+
+        &:active {
+            background: transparent;
+        }
+    }
+
+    &[disabled] {
+        background-color: $color-second;
+        opacity: 0.8;
+        cursor: default;
+    }
+
+}
