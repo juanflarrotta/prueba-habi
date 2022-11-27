@@ -7,8 +7,14 @@ const steps = [
     description: 'Queremos saber sobre ti, indicanos tu nombre y tu apellido.',
     key: 'name',
     validate: {
-      required: true,
-      minLength: 3,
+      required: {
+        value: true,
+        message: '',
+      },
+      minLength: {
+        value: 3,
+        message: 'Debe contener mas de 3 letras',
+      },
     },
   },
   {

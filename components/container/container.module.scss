@@ -10,8 +10,9 @@
     align-items: center;
 
     &--item {
-        padding: sizeUnit(5, px);
-        justify-content: space-between;
+        padding: sizeUnit(5, px) sizeUnit(3, px);
+        justify-content: flex-start;
+        gap: sizeUnit(3, px);
     }
 
     &--modal {

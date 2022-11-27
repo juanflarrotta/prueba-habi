@@ -6,7 +6,7 @@ export type Steps = {
   description: string;
   key: string;
   validate: {
-    required: boolean;
-    minLength: number;
+    value: any;
+    message: string;
   };
 }[];
