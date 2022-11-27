@@ -2,7 +2,7 @@ import React, { ReactElement, ReactNode } from 'react';
 import styles from './btn.module.scss';
 
 type Props = {
-  text: string;
+  text?: string;
   clickHandler?: () => void;
   disabled?: boolean;
   className?: string;
@@ -18,7 +18,7 @@ const Btn = ({ text, clickHandler, disabled, className, children }: Props): Reac
       disabled={disabled}
     >
       {children}
-      <span className={styles.btn__text}>{text}</span>
+      {text && <span className={styles.btn__text}>{text}</span>}
     </button>
   );
 };

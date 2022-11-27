@@ -8,10 +8,6 @@
     cursor: pointer;
     min-width: sizeUnit(25, px);
 
-    &:hover {
-        background: $color-sixth;
-    }
-
     &:active {
         background: $color-first;
     }
@@ -37,16 +33,6 @@
             margin-left: sizeUnit(1, px);
         }
 
-        &:hover {
-            background: transparent;
-            color: $color-first;
-            transform: translate(0, 0);
-
-            svg {
-                fill: $color-first;
-            }
-        }
-
         &:active {
             background: transparent;
         }
@@ -58,4 +44,24 @@
         cursor: default;
     }
 
+}
+
+@media (min-width: $tablet) {
+    .btn {
+        &:hover {
+            background: $color-sixth;
+        }
+
+        &--back {
+            &:hover {
+                background: transparent;
+                color: $color-first;
+                transform: translate(0, 0);
+
+                svg {
+                    fill: $color-first;
+                }
+            }
+        }
+    }
 }

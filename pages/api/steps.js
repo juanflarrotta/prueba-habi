@@ -22,6 +22,17 @@ const steps = [
       required: true,
     },
   },
+  {
+    step: 3,
+    path: 'direccion-inmueble',
+    typeInput: 'text',
+    title: 'Direccion del inmueble',
+    description: 'Indicanos la direccion del inmueble.',
+    key: 'adress',
+    validate: {
+      required: true,
+    },
+  },
 ];
 
 export default function handler(req, res) {

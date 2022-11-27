@@ -38,6 +38,7 @@ $extraBold: 'Montserrat-ExtraBold';
 //colores
 $color-white: #ffffff;
 $color-black: #252129;
+$color-black-opacity: #252129eb;
 $color-first: #6a06fa;
 $color-second: #666666;
 $color-third: #d6f3ff;
@@ -70,4 +71,5 @@ $base: 8;
 
 //styles gloabals
 $border-radius: sizeUnit(13, px);
+$border-radius-box: sizeUnit(2, px);
 $border-btn: sizeUnit(0.2, px);
