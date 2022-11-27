@@ -6,19 +6,24 @@
     padding: sizeUnit(1, px) sizeUnit(4, px);
     border-radius: $border-radius;
     cursor: pointer;
-    min-width: sizeUnit(25, px);
+    min-width: sizeUnit(15, px);
+    font-family: $light;
 
     &:active {
         background: $color-first;
     }
 
     &__text {
-        @include fontSize(1.5);
+        @include fontSize(1);
     }
 
     &--bottom {
         margin-bottom: sizeUnit(5, px);
         width: fit-content;
+    }
+
+    &--next {
+        align-self: self-end;
     }
 
     &--back {
@@ -36,6 +41,16 @@
         &:active {
             background: transparent;
         }
+    }
+
+    &--float {
+        color: $color-fourth;
+        background: transparent;
+        border: none;
+        padding: size(0);
+        position: fixed;
+        bottom: sizeUnit(5, px);
+        right: sizeUnit(3, px);
     }
 
     &[disabled] {

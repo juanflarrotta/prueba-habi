@@ -7,12 +7,13 @@ type Props = {
   disabled?: boolean;
   className?: string;
   children?: ReactNode;
+  type: 'button' | 'submit' | 'reset';
 };
-const Btn = ({ text, clickHandler, disabled, className, children }: Props): ReactElement => {
+const Btn = ({ text, clickHandler, disabled, className, children, type }: Props): ReactElement => {
   const newClass = className ? styles[className] : '';
   return (
     <button
-      type="button"
+      type={type}
       className={`${styles.btn} ${newClass}`}
       onClick={clickHandler}
       disabled={disabled}

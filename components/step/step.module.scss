@@ -1,0 +1,41 @@
+@import '../../styles/variables.scss';
+
+.step {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    margin-top: sizeUnit(8, px);
+
+    &__title {
+        color: $color-first;
+    }
+
+    &__description {
+        margin: sizeUnit(2, px) sizeUnit(0, px);
+        line-height: 24px;
+    }
+
+    &__form {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    &__label {
+        color: $color-second;
+    }
+
+    &__input {
+        font-family: $semiBold;
+        max-width: 180px;
+        background: $color-white;
+        border: sizeUnit(0, px) solid $color-black;
+        border-radius: sizeUnit(0.5, px);
+        color: $color-black;
+        padding: sizeUnit(1, px) sizeUnit(2, px);
+        outline: none;
+        text-transform: capitalize;
+    }
+}

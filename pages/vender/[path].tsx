@@ -9,6 +9,7 @@ import { setSteps } from 'redux/slices/stepsSlice';
 import { Steps } from 'types';
 import { decrementStep, incrementStep, selectValueStep, setStep } from 'redux/slices/stepSlice';
 import Summary from '@components/summary';
+import Step from '@components/step';
 
 type Props = {
   steps: Steps;
@@ -17,6 +18,7 @@ type Props = {
 const StepView = ({ steps }: Props): ReactElement => {
   const [loading, setLoading] = useState(false);
   const [modal, setModal] = useState(false);
+
   const router = useRouter();
   const step = useSelector(selectValueStep);
   const dispatch = useDispatch();
@@ -27,18 +29,17 @@ const StepView = ({ steps }: Props): ReactElement => {
 
   const validatePath = sortSteps.filter(a => a.path === router.query.path);
 
-  const positionStep = sortSteps.findIndex(element => {
-    if (element.step == validatePath[0].step) {
-      return true;
-    }
-  });
-
   useEffect(() => {
     if (validatePath.length === 0) {
       router.push(`/`);
     } else {
+      const positionStep = sortSteps.findIndex(element => {
+        if (element.step == validatePath[0].step) {
+          return true;
+        }
+      });
       setLoading(true);
-      dispatch(setSteps(steps));
+      dispatch(setSteps(sortSteps));
       dispatch(setStep(positionStep));
     }
   }, []);
@@ -46,7 +47,7 @@ const StepView = ({ steps }: Props): ReactElement => {
   const backStep = () => {
     if (step > 0) {
       dispatch(decrementStep());
-      router.push(`/vender/${sortSteps[positionStep - 1].path}`);
+      router.push(`/vender/${sortSteps[step - 1].path}`);
     } else {
       router.push(`/`);
     }
@@ -63,19 +64,21 @@ const StepView = ({ steps }: Props): ReactElement => {
     <Container className="container--item">
       {loading && (
         <>
-          <Btn text="Atras" clickHandler={() => backStep()} className="btn--back">
+          <Btn type="button" text="Atras" clickHandler={() => backStep()} className="btn--back">
             <FaArrowLeft />
           </Btn>
-          <h2>{`Paso ${step + 1} de ${sortSteps.length}`}</h2>
-          <p>{validatePath[0].description}</p>
-          <div>
-            {step + 1 === sortSteps.length ? (
-              <Btn text="Finalizar" className="btn--bottom" />
-            ) : (
-              <Btn text="Siguiente" clickHandler={() => nextStep()} className="btn--bottom" />
-            )}
-            <Btn text="Resumen" clickHandler={() => setModal(true)} className="" />
-          </div>
+          <Step
+            step={validatePath[0]}
+            numStep={step}
+            numMax={sortSteps.length}
+            nextStep={nextStep}
+          />
+          <Btn
+            type="button"
+            text="Resumen"
+            clickHandler={() => setModal(true)}
+            className="btn--float"
+          />
           {modal && <Summary steps={sortSteps} clickHandler={() => setModal(false)} />}
         </>
       )}
