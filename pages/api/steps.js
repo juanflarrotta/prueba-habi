@@ -1,7 +1,7 @@
 const steps = [
   {
     step: 1,
-    path: '/nombre-cliente',
+    path: 'nombre-cliente',
     typeInput: 'text',
     title: 'Nombre y apellido',
     description: 'Queremos saber sobre ti, indicanos tu nombre y tu apellido.',
@@ -13,7 +13,7 @@ const steps = [
   },
   {
     step: 2,
-    path: '/email-cliente',
+    path: 'email-cliente',
     typeInput: 'email',
     title: 'Email',
     description: 'Indicanos tu correo electronico.',
