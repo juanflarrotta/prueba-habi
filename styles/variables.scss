@@ -1,0 +1,75 @@
+//fonts
+@font-face {
+    font-family: 'Montserrat-Thin';
+    font-style: normal;
+    src: url('/fonts/Montserrat-Thin.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Montserrat-Light';
+    font-style: normal;
+    src: url('/fonts/Montserrat-Light.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Montserrat-Regular';
+    font-style: normal;
+    src: url('/fonts/Montserrat-Regular.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Montserrat-SemiBold';
+    font-style: normal;
+    src: url('/fonts/Montserrat-SemiBold.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Montserrat-ExtraBold';
+    font-style: normal;
+    src: url('/fonts/Montserrat-ExtraBold.ttf') format('truetype');
+}
+
+$thin: 'Montserrat-Thin';
+$light: 'Montserrat-Light';
+$regular: 'Montserrat-Regular';
+$semiBold: 'Montserrat-SemiBold';
+$extraBold: 'Montserrat-ExtraBold';
+
+//colores
+$color-white: #ffffff;
+$color-black: #252129;
+$color-black-opacity: #252129eb;
+$color-first: #6a06fa;
+$color-second: #666666;
+$color-third: #d6f3ff;
+$color-fourth: #32c1ff;
+$color-fifth: #2e1253;
+$color-sixth: #775e9d;
+
+//breakpoints
+$mobile: 600px;
+$tablet: 1024px;
+$desktop: 1920px;
+
+//Proportion
+$base: 8;
+
+//functions
+@function size($num) {
+    @return $num * $base;
+}
+
+@function sizeUnit($num, $unit) {
+    @return $num * $base+$unit;
+}
+
+//mixins
+@mixin fontSize($number) {
+    font-size: $number + rem;
+    font-size: $number * size(2) + px;
+}
+
+//styles gloabals
+$border-radius: sizeUnit(13, px);
+$border-radius-box: sizeUnit(2, px);
+$border-btn: sizeUnit(0.2, px);

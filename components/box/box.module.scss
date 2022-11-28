@@ -1,0 +1,18 @@
+@import '../../styles/variables.scss';
+
+.box {
+    height: sizeUnit(2.5, px);
+
+    &--checkbox {
+        display: flex;
+        align-items: center;
+        height: sizeUnit(5, px);
+    }
+
+    &--item {
+        height: auto;
+        display: flex;
+        flex-direction: column;
+        gap: sizeUnit(2, px);
+    }
+}

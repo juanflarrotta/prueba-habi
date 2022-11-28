@@ -1,0 +1,32 @@
+@import '../../styles/variables.scss';
+
+.summary {
+    display: none;
+
+    &__list {
+        background-color: $color-white;
+        color: $color-black;
+        width: 100%;
+        height: 100%;
+        padding: sizeUnit(3, px);
+        list-style: none;
+        overflow: auto;
+    }
+
+    &__item {
+        margin-bottom: sizeUnit(2, px);
+    }
+
+    &__title {
+        text-transform: capitalize;
+        min-width: sizeUnit(3, px);
+        color: $color-first;
+    }
+}
+
+@media (min-width: $tablet) {
+    .summary {
+        display: flex;
+        flex: 0 0 30%;
+    }
+}

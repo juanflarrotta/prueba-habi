@@ -1,0 +1,87 @@
+@import '../../styles/variables.scss';
+
+.btn {
+    background: $color-first;
+    border: $border-btn solid $color-white;
+    padding: sizeUnit(1, px) sizeUnit(4, px);
+    border-radius: $border-radius;
+    cursor: pointer;
+    min-width: sizeUnit(15, px);
+    font-family: $light;
+
+    &:active {
+        background: $color-first;
+    }
+
+    &__text {
+        @include fontSize(1);
+    }
+
+    &--bottom {
+        margin-bottom: sizeUnit(5, px);
+        width: fit-content;
+    }
+
+    &--next {
+        align-self: self-end;
+    }
+
+    &--back {
+        background: transparent;
+        border: none;
+        padding: size(0);
+        align-self: start;
+        min-width: auto;
+
+        .btn__text {
+            @include fontSize(1);
+            margin-left: sizeUnit(1, px);
+        }
+
+        &:active {
+            background: transparent;
+        }
+    }
+
+    &--float {
+        color: $color-fourth;
+        background: transparent;
+        border: none;
+        padding: size(0);
+        position: fixed;
+        bottom: sizeUnit(5, px);
+        right: sizeUnit(3, px);
+    }
+
+    &[disabled] {
+        background-color: $color-second;
+        opacity: 0.8;
+        cursor: default;
+    }
+
+}
+
+@media (min-width: $tablet) {
+    .btn {
+        &:hover {
+            background: $color-sixth;
+        }
+
+        &--back {
+            &:hover {
+                background: transparent;
+                color: $color-first;
+                transform: translate(0, 0);
+
+                svg {
+                    fill: $color-first;
+                }
+            }
+        }
+
+        &--float {
+            display: none;
+            opacity: 0;
+        }
+    }
+}

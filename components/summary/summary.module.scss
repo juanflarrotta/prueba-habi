@@ -1,0 +1,34 @@
+@import '../../styles/variables.scss';
+
+.summary {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: $color-black-opacity;
+
+    &__list {
+        background-color: $color-white;
+        color: $color-black;
+        width: 100%;
+        height: 100%;
+        border-radius: $border-radius-box;
+        padding: sizeUnit(3, px);
+        list-style: none;
+        overflow: auto;
+    }
+
+    &__item {
+        margin-bottom: sizeUnit(2, px);
+    }
+
+    &__title {
+        text-transform: capitalize;
+        min-width: sizeUnit(3, px);
+    }
+
+    button {
+        align-self: self-end;
+    }
+}
