@@ -13,12 +13,27 @@
         padding: sizeUnit(5, px) sizeUnit(3, px);
         justify-content: flex-start;
         gap: sizeUnit(3, px);
+        max-width: sizeUnit(128, px);
+        margin: 0 auto;
     }
 
     &--modal {
         width: 70%;
         margin: 0 auto;
-        height: 70%;
+        height: 75%;
         transform: translate(0px, 15%);
+    }
+
+    &--desktop {
+        height: auto;
+        width: 100%;
+    }
+}
+
+@media (min-width: $tablet) {
+    .container {
+        &--item {
+            min-width: sizeUnit(80, px);
+        }
     }
 }

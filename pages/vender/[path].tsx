@@ -10,6 +10,8 @@ import { Steps } from 'types';
 import { decrementStep, incrementStep, selectValueStep, setStep } from 'redux/slices/stepSlice';
 import Summary from '@components/summary';
 import Step from '@components/step';
+import SummaryDesktop from '@components/summary-desktop';
+import Layout from '@components/layout';
 
 type Props = {
   steps: Steps;
@@ -61,28 +63,31 @@ const StepView = ({ steps }: Props): ReactElement => {
   };
 
   return (
-    <Container className="container--item">
-      {loading && (
-        <>
-          <Btn type="button" text="Atras" clickHandler={() => backStep()} className="btn--back">
-            <FaArrowLeft />
-          </Btn>
-          <Step
-            step={validatePath[0]}
-            numStep={step}
-            numMax={sortSteps.length}
-            nextStep={nextStep}
-          />
-          <Btn
-            type="button"
-            text="Resumen"
-            clickHandler={() => setModal(true)}
-            className="btn--float"
-          />
-          {modal && <Summary steps={sortSteps} clickHandler={() => setModal(false)} />}
-        </>
-      )}
-    </Container>
+    <Layout>
+      <Container className="container--item">
+        {loading && (
+          <>
+            <Btn type="button" text="Atras" clickHandler={() => backStep()} className="btn--back">
+              <FaArrowLeft />
+            </Btn>
+            <Step
+              step={validatePath[0]}
+              numStep={step}
+              numMax={sortSteps.length}
+              nextStep={nextStep}
+            />
+            <Btn
+              type="button"
+              text="Resumen"
+              clickHandler={() => setModal(true)}
+              className="btn--float"
+            />
+          </>
+        )}
+      </Container>
+      <SummaryDesktop steps={sortSteps} />
+      {modal && <Summary steps={sortSteps} clickHandler={() => setModal(false)} />}
+    </Layout>
   );
 };
 export default StepView;

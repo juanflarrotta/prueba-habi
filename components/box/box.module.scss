@@ -8,4 +8,11 @@
         align-items: center;
         height: sizeUnit(5, px);
     }
+
+    &--item {
+        height: auto;
+        display: flex;
+        flex-direction: column;
+        gap: sizeUnit(2, px);
+    }
 }
