@@ -1,6 +1,6 @@
 import Btn from '@components/btn';
 import Container from '@components/container';
-import React, { ReactElement, ReactNode } from 'react';
+import React, { ReactElement } from 'react';
 import { FaTimes } from 'react-icons/fa';
 import styles from './summary.module.scss';
 
@@ -18,7 +18,7 @@ const Summary = ({ className, steps, clickHandler }: Props): ReactElement => {
   return (
     <div className={`${styles.summary} ${newClass}`}>
       <Container className="container--modal">
-        <Btn clickHandler={clickHandler} className="btn--back">
+        <Btn clickHandler={clickHandler} className="btn--back" type="button">
           <FaTimes size="1.5em" />
         </Btn>
         <ul className={`${styles.summary__list}`}>

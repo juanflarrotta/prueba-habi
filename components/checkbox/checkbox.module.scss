@@ -1,11 +1,12 @@
 @import '../../styles/variables.scss';
 
-.box {
-    height: sizeUnit(2.5, px);
+.checkbox {
 
-    &--checkbox {
+    &__label {
         display: flex;
+        height: sizeUnit(3, px);
         align-items: center;
-        height: sizeUnit(5, px);
+        gap: sizeUnit(1, px);
     }
+
 }
