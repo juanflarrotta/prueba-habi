@@ -32,7 +32,7 @@ const Home = ({ steps }: Props): ReactElement => {
   return (
     <Container>
       <Background />
-      <Btn text="Vender" clickHandler={() => newSale()} className="btn--bottom" />
+      <Btn text="Vender" clickHandler={() => newSale()} className="btn--bottom" type="button" />
     </Container>
   );
 };
