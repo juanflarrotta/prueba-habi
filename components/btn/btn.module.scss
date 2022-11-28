@@ -78,5 +78,10 @@
                 }
             }
         }
+
+        &--float {
+            display: none;
+            opacity: 0;
+        }
     }
 }

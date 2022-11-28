@@ -1,19 +1,13 @@
 @import '../../styles/variables.scss';
 
 .summary {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: $color-black-opacity;
+    display: none;
 
     &__list {
         background-color: $color-white;
         color: $color-black;
         width: 100%;
         height: 100%;
-        border-radius: $border-radius-box;
         padding: sizeUnit(3, px);
         list-style: none;
         overflow: auto;
@@ -26,9 +20,13 @@
     &__title {
         text-transform: capitalize;
         min-width: sizeUnit(3, px);
+        color: $color-first;
     }
+}
 
-    button {
-        align-self: self-end;
+@media (min-width: $tablet) {
+    .summary {
+        display: flex;
+        flex: 0 0 30%;
     }
 }
