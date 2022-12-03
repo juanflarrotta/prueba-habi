@@ -1,3 +1,5 @@
+import InputCheckbox from '@components/inputs/input-checkbox';
+import InputRadio from '@components/inputs/input-radio';
 import InputEmail from '@components/inputs/input-email';
 import InputNumber from '@components/inputs/input-number';
 import InputText from '@components/inputs/input-text';
@@ -17,6 +19,11 @@ type Props = {
       value: boolean;
       message: string;
     };
+    optionInputs: [];
+    optionsRadio: {
+      text: string;
+      options: [];
+    }[];
   };
   position: number;
 };
@@ -37,6 +44,24 @@ const Step = ({ step, position }: Props): ReactElement => {
         name={step.key}
         position={position}
         validate={step.validate}
+      />
+    ),
+    checkbox: () => (
+      <InputCheckbox
+        label={step.title}
+        name={step.key}
+        position={position}
+        validate={step.validate}
+        optionInputs={step.optionInputs}
+      />
+    ),
+    radio: () => (
+      <InputRadio
+        label={step.title}
+        name={step.key}
+        position={position}
+        validate={step.validate}
+        optionsRadio={step.optionsRadio}
       />
     ),
   };

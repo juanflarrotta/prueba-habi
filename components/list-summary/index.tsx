@@ -11,6 +11,23 @@ type Props = {
 const ListSummary = ({ steps }: Props): ReactElement => {
   const [data, setData] = useState([]);
 
+  const textValue = step => {
+    if (data[step.key] && step.typeInput === 'checkbox' && data.length !== 0) {
+      const values = step.optionInputs.map((value, index) => {
+        if (data[step.key][index] === true) {
+          return (
+            <span className={styles.summary__text} key={`${value}${index}`}>
+              {value}
+            </span>
+          );
+        }
+      });
+      return values;
+    } else {
+      return <span className={styles.summary__text}>{data[step.key]}</span>;
+    }
+  };
+
   useEffect(() => {
     const getLocalStorage = JSON.parse(localStorage.getItem('keysSteps'));
     if (getLocalStorage) {
@@ -22,9 +39,9 @@ const ListSummary = ({ steps }: Props): ReactElement => {
     <ul className={`${styles.summary__list}`}>
       {steps.map((step, index) => {
         return (
-          <li className={styles.summary__item} key={index}>
+          <li className={styles.summary__item} key={`step${index}`}>
             <h4 className={styles.summary__title}>{step.title}:</h4>
-            <span className={styles.summary__text}>{data[step.key]}</span>
+            {textValue(step)}
           </li>
         );
       })}
