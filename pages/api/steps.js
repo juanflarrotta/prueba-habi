@@ -27,7 +27,7 @@ const steps = [
     validate: {
       required: {
         value: true,
-        message: '',
+        message: 'Se necesita un nombre',
       },
       minLength: {
         value: 3,
@@ -107,7 +107,7 @@ const steps = [
     step: 7,
     path: 'monto-inmueble',
     optionInputs: [],
-    typeInput: 'text',
+    typeInput: 'number',
     optionsCheck: [],
     title: 'Precio del inmueble',
     description: 'Indicanos el valor del inmueble.',

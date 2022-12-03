@@ -8,6 +8,7 @@ type Props = {
   className?: string;
   steps: {
     key: string;
+    title: string;
   }[];
   clickHandler?: () => void;
 };
