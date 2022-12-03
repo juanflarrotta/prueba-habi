@@ -8,7 +8,13 @@ export type Steps = {
   description: string;
   key: string;
   validate: {
-    value: any;
-    message: string;
+    required: {
+      value: string;
+      message: string;
+    };
   };
+  optionsRadio: {
+    text: string;
+    options: [];
+  }[];
 }[];

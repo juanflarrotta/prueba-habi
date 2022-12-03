@@ -3,10 +3,12 @@ import InputRadio from '@components/inputs/input-radio';
 import InputEmail from '@components/inputs/input-email';
 import InputNumber from '@components/inputs/input-number';
 import InputText from '@components/inputs/input-text';
+import InputCurrency from '@components/inputs/input-currency';
 import { selectValueSteps } from '@redux/slices/stepsSlice';
 import React, { ReactElement } from 'react';
 import { useSelector } from 'react-redux';
 import styles from './step.module.scss';
+import InputFile from '@components/inputs/input-file';
 
 type Props = {
   step: {
@@ -63,6 +65,17 @@ const Step = ({ step, position }: Props): ReactElement => {
         validate={step.validate}
         optionsRadio={step.optionsRadio}
       />
+    ),
+    currency: () => (
+      <InputCurrency
+        label={step.title}
+        name={step.key}
+        position={position}
+        validate={step.validate}
+      />
+    ),
+    file: () => (
+      <InputFile label={step.title} name={step.key} position={position} validate={step.validate} />
     ),
   };
 

@@ -16,7 +16,13 @@
         &___checkbox {
             margin-right: sizeUnit(3, px);
         }
+
+        &___file {
+            max-width: fit-content;
+        }
+
     }
+
 
     &__label {
         display: block;

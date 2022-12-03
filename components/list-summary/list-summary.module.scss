@@ -30,7 +30,7 @@
 
     &__text {
         display: block;
-        margin: sizeUnit(2, px);
+        margin: sizeUnit(0.5, px) sizeUnit(2, px);
         text-transform: uppercase;
     }
 }
