@@ -1,0 +1,26 @@
+@import '../../styles/variables.scss';
+
+.input {
+    margin-bottom: sizeUnit(4, px);
+    display: flex;
+    flex-direction: column;
+
+    &__input {
+        height: sizeUnit(4, px);
+        text-transform: capitalize;
+        padding: sizeUnit(0, px) sizeUnit(2, px);
+        max-width: sizeUnit(25, px);
+        width: -webkit-fill-available;
+        font-family: $regular;
+    }
+
+    &__label {
+        display: block;
+        margin-bottom: sizeUnit(1, px);
+        color: $color-second;
+    }
+
+    &__error {
+        color: $color-error;
+    }
+}

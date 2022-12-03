@@ -20,6 +20,7 @@
 
     &--next {
         align-self: self-end;
+        margin-top: sizeUnit(5, px);
     }
 
     &--back {
@@ -60,12 +61,6 @@
         &--float {
             display: none;
             opacity: 0;
-        }
-
-        &--next {
-            grid-area: 3 / 1 / 4 / 2;
-            align-self: start;
-            justify-self: end;
         }
 
         &--back {

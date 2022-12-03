@@ -21,7 +21,6 @@ type Props = {
 const StepView = ({ steps }: Props): ReactElement => {
   const [loading, setLoading] = useState(false);
   const [modal, setModal] = useState(false);
-  const [textBtn, setTextBtn] = useState(TEXTS.next);
   const router = useRouter();
   const dispatch = useDispatch();
 
@@ -42,22 +41,6 @@ const StepView = ({ steps }: Props): ReactElement => {
     }
   };
 
-  const nextStep = () => {
-    if (positionStep + 1 !== sortSteps.length) {
-      router.push(`/vender/${sortSteps[positionStep + 1].path}`);
-    } else {
-      console.log('ultimo paso');
-    }
-  };
-
-  useEffect(() => {
-    if (positionStep + 1 === sortSteps.length) {
-      setTextBtn(TEXTS.detail);
-    } else {
-      setTextBtn(TEXTS.next);
-    }
-  });
-
   useEffect(() => {
     if (dataStep.length === 0) {
       router.push(`/`);
@@ -75,9 +58,8 @@ const StepView = ({ steps }: Props): ReactElement => {
           <Btn text={TEXTS.back} clickHandler={() => backStep()} className="btn--back">
             <FaArrowLeft />
           </Btn>
-          <Step step={dataStep[0]} />
+          <Step step={dataStep[0]} position={positionStep} />
           <Btn text={TEXTS.summary} clickHandler={() => setModal(true)} className="btn--float" />
-          <Btn text={textBtn} clickHandler={() => nextStep()} className="btn--next" />
           <SummaryDesktop steps={sortSteps} />
           {modal && <Summary steps={sortSteps} clickHandler={() => setModal(false)} />}
         </div>

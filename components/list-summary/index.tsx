@@ -4,6 +4,7 @@ import styles from './list-summary.module.scss';
 type Props = {
   steps: {
     key: string;
+    title: string;
   }[];
 };
 
@@ -22,7 +23,7 @@ const ListSummary = ({ steps }: Props): ReactElement => {
       {steps.map((step, index) => {
         return (
           <li className={styles.summary__item} key={index}>
-            <h4 className={styles.summary__title}>{step.key}:</h4>
+            <h4 className={styles.summary__title}>{step.title}:</h4>
             <span className={styles.summary__text}>{data[step.key]}</span>
           </li>
         );
