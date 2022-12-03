@@ -9,7 +9,6 @@ import { AppProps } from 'next/app';
 type CustomAppProps = AppProps & {
   Component: NextPageWithLayout;
 };
-
 function MyApp({ Component, pageProps }: CustomAppProps) {
   return (
     <Provider store={store}>

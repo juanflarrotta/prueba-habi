@@ -1,5 +1,21 @@
 const steps = [
   {
+    step: 2,
+    path: 'email-cliente',
+    optionInputs: [],
+    typeInput: 'email',
+    optionsCheck: [],
+    title: 'Email',
+    description: 'Indicanos tu correo electronico.',
+    key: 'email',
+    validate: {
+      required: {
+        value: true,
+        message: '',
+      },
+    },
+  },
+  {
     step: 1,
     path: 'nombre-cliente',
     optionInputs: [],
@@ -16,22 +32,6 @@ const steps = [
       minLength: {
         value: 3,
         message: 'Debe contener mas de 3 letras',
-      },
-    },
-  },
-  {
-    step: 2,
-    path: 'email-cliente',
-    optionInputs: [],
-    typeInput: 'email',
-    optionsCheck: [],
-    title: 'Email',
-    description: 'Indicanos tu correo electronico.',
-    key: 'email',
-    validate: {
-      required: {
-        value: true,
-        message: '',
       },
     },
   },

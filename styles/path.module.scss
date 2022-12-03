@@ -1,0 +1,21 @@
+@import './variables.scss';
+
+.path {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    padding: sizeUnit(6, px);
+    max-width: sizeUnit(150, px);
+    margin: 0 auto;
+}
+
+@media (min-width: $tablet) {
+    .path {
+        display: grid;
+        grid-template-columns: calc(70% - sizeUnit(4, px)) 30%;
+        grid-template-rows: auto auto 1fr;
+        grid-column-gap: sizeUnit(4, px);
+        grid-row-gap: sizeUnit(4, px);
+    }
+}
