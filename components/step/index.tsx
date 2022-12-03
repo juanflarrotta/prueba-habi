@@ -1,4 +1,6 @@
-import InputText from '@components/input-text';
+import InputEmail from '@components/inputs/input-email';
+import InputNumber from '@components/inputs/input-number';
+import InputText from '@components/inputs/input-text';
 import { selectValueSteps } from '@redux/slices/stepsSlice';
 import React, { ReactElement } from 'react';
 import { useSelector } from 'react-redux';
@@ -25,6 +27,17 @@ const Step = ({ step, position }: Props): ReactElement => {
   const inputs = {
     text: () => (
       <InputText label={step.title} name={step.key} position={position} validate={step.validate} />
+    ),
+    email: () => (
+      <InputEmail label={step.title} name={step.key} position={position} validate={step.validate} />
+    ),
+    number: () => (
+      <InputNumber
+        label={step.title}
+        name={step.key}
+        position={position}
+        validate={step.validate}
+      />
     ),
   };
 
