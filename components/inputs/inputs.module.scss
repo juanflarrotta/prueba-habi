@@ -12,12 +12,22 @@
         max-width: sizeUnit(25, px);
         width: -webkit-fill-available;
         font-family: $regular;
+
+        &___checkbox {
+            margin-right: sizeUnit(3, px);
+        }
     }
 
     &__label {
         display: block;
         margin-bottom: sizeUnit(1, px);
         color: $color-second;
+
+        &___checkbox {
+            margin: sizeUnit(2, px) 0 0 0;
+            cursor: pointer;
+            width: fit-content;
+        }
     }
 
     &__error {
