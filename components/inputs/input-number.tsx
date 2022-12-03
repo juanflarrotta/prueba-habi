@@ -1,12 +1,13 @@
-import Btn from '@components/btn';
-import { TEXTS } from '@constants/index';
-import { ErrorMessage } from '@hookform/error-message';
-import { selectValueSteps } from '@redux/slices/stepsSlice';
-import { useRouter } from 'next/router';
 import React, { ReactElement, useEffect, useState } from 'react';
-import { useForm } from 'react-hook-form';
+import { useRouter } from 'next/router';
 import { useSelector } from 'react-redux';
-import styles from './input-text.module.scss';
+import { selectValueSteps } from '@redux/slices/stepsSlice';
+import { useForm } from 'react-hook-form';
+import { ErrorMessage } from '@hookform/error-message';
+import { TEXTS } from '@constants/index';
+import Btn from '@components/btn';
+import { nextStep, setLocalStorage } from 'utils/functions';
+import styles from './inputs.module.scss';
 
 type Props = {
   label: string;
@@ -18,30 +19,29 @@ type Props = {
   };
 };
 
-const InputText = ({ label, name, position, validate }: Props): ReactElement => {
+const InputNumber = ({ label, name, position, validate }: Props): ReactElement => {
   const [textBtn, setTextBtn] = useState(TEXTS.next);
   const steps = useSelector(selectValueSteps);
   const router = useRouter();
   const {
     register,
     handleSubmit,
+    setValue,
+    trigger,
     formState: { errors, isValid },
   } = useForm();
 
-  const nextStep = () => {
-    if (position + 1 !== steps.length) {
-      router.push(`/vender/${steps[position + 1].path}`);
-    } else {
-      console.log('ultimo paso');
-    }
-  };
-
   const onSubmit = data => {
-    localStorage.setItem('keysSteps', JSON.stringify({ ...data }));
-    nextStep();
+    setLocalStorage(data);
+    nextStep(position, steps, router);
   };
 
   useEffect(() => {
+    const getLocalStorage = JSON.parse(localStorage.getItem('keysSteps'));
+    if (getLocalStorage && getLocalStorage[name]) {
+      setValue(name, getLocalStorage[name]);
+      trigger(name);
+    }
     if (position + 1 === steps.length) {
       setTextBtn(TEXTS.detail);
     } else {
@@ -53,7 +53,7 @@ const InputText = ({ label, name, position, validate }: Props): ReactElement => 
     <form onSubmit={handleSubmit(onSubmit)}>
       <div className={styles.input}>
         <label className={styles.input__label}>{label}</label>
-        <input type="text" className={styles.input__input} {...register(name, validate)} />
+        <input type="number" className={styles.input__input} {...register(name, validate)} />
         <ErrorMessage
           errors={errors}
           name={name}
@@ -71,4 +71,4 @@ const InputText = ({ label, name, position, validate }: Props): ReactElement => 
   );
 };
 
-export default InputText;
+export default InputNumber;
