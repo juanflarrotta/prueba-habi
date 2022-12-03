@@ -9,6 +9,7 @@ type Props = {
   steps: {
     key: string;
     title: string;
+    path: string;
   }[];
   clickHandler?: () => void;
 };

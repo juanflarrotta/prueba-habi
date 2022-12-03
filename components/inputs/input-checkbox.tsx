@@ -33,21 +33,15 @@ const InputCheckbox = ({ label, name, position, validate, optionInputs }: Props)
   } = useForm();
 
   const onSubmit = data => {
-    const options = [];
-    for (const key in data) {
-      options.push(data[key]);
-    }
-    setLocalStorage({ [name]: options });
+    setLocalStorage(data);
     nextStep(position, steps, router);
   };
 
   useEffect(() => {
     const getLocalStorage = JSON.parse(localStorage.getItem('keysSteps'));
     if (getLocalStorage && getLocalStorage[name]) {
-      getLocalStorage[name].map((value, index) => {
-        setValue(`${name}${index}`, value);
-        trigger(`${name}${index}`);
-      });
+      setValue(name, getLocalStorage[name]);
+      trigger(name);
     }
     if (position + 1 === steps.length) {
       setTextBtn(TEXTS.detail);
@@ -66,7 +60,8 @@ const InputCheckbox = ({ label, name, position, validate, optionInputs }: Props)
               <input
                 type="checkbox"
                 className={styles.input__input___checkbox}
-                {...register(`${name}${index}`, validate)}
+                value={input}
+                {...register(`${name}`, validate)}
               />
               {input}
             </label>

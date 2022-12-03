@@ -5,6 +5,8 @@ import ListSummary from '@components/list-summary';
 type Props = {
   steps: {
     key: string;
+    title: string;
+    path: string;
   }[];
 };
 

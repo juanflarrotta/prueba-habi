@@ -12,7 +12,7 @@ export const nextStep = (position: number, steps: { path: string }[], router) =>
   if (position + 1 !== steps.length) {
     router.push(`/vender/${steps[position + 1].path}`);
   } else {
-    console.log('ultimo paso');
+    router.push(`/vender/summary`);
   }
 };
 

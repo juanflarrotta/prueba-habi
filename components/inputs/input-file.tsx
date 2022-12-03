@@ -17,13 +17,9 @@ type Props = {
     value: boolean;
     message: string;
   };
-  optionsRadio: {
-    text: string;
-    options: [];
-  }[];
 };
 
-const InputRadio = ({ label, name, position, validate, optionsRadio }: Props): ReactElement => {
+const InputFile = ({ label, name, position, validate }: Props): ReactElement => {
   const [textBtn, setTextBtn] = useState(TEXTS.next);
   const steps = useSelector(selectValueSteps);
   const router = useRouter();
@@ -36,7 +32,12 @@ const InputRadio = ({ label, name, position, validate, optionsRadio }: Props): R
   } = useForm();
 
   const onSubmit = data => {
-    setLocalStorage(data);
+    console.log(data);
+    console.log(data[name][0]);
+
+    const dataFile = { [name]: data[name][0].name };
+
+    setLocalStorage(dataFile);
     nextStep(position, steps, router);
   };
 
@@ -55,22 +56,14 @@ const InputRadio = ({ label, name, position, validate, optionsRadio }: Props): R
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <div className={styles.input}>
+      <div className={`${styles.input}`}>
         <label className={styles.input__label}>{label}</label>
-        {optionsRadio.map((input, index) => {
-          return (
-            <label className={styles.input__label___checkbox} key={`${name}${index}`}>
-              <input
-                name={name}
-                type="radio"
-                className={styles.input__input___checkbox}
-                value={input.text}
-                {...register(name, validate)}
-              />
-              {input.text}
-            </label>
-          );
-        })}
+        <input
+          type="file"
+          accept="image/*"
+          className={`${styles.input__input} ${styles.input__input___file}`}
+          {...register(name, validate)}
+        />
         <ErrorMessage
           errors={errors}
           name={name}
@@ -88,4 +81,4 @@ const InputRadio = ({ label, name, position, validate, optionsRadio }: Props): R
   );
 };
 
-export default InputRadio;
+export default InputFile;
