@@ -1,17 +1,18 @@
 import React, { ReactElement, useEffect, useState } from 'react';
 
 import { useRouter } from 'next/router';
-import Container from '@components/container';
 import Btn from '@components/btn';
 import { FaArrowLeft } from 'react-icons/fa';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { setSteps } from 'redux/slices/stepsSlice';
 import { Steps } from 'types';
-import { decrementStep, incrementStep, selectValueStep, setStep } from 'redux/slices/stepSlice';
+import { setStep } from 'redux/slices/stepSlice';
 import Summary from '@components/summary';
-import Step from '@components/step';
 import SummaryDesktop from '@components/summary-desktop';
-import Layout from '@components/layout';
+import Step from '@components/step';
+import { TEXTS } from '@constants/index';
+import styles from '@styles/path.module.scss';
+import { sortData } from 'utils/functions';
 
 type Props = {
   steps: Steps;
@@ -20,74 +21,68 @@ type Props = {
 const StepView = ({ steps }: Props): ReactElement => {
   const [loading, setLoading] = useState(false);
   const [modal, setModal] = useState(false);
-
+  const [textBtn, setTextBtn] = useState(TEXTS.next);
   const router = useRouter();
-  const step = useSelector(selectValueStep);
   const dispatch = useDispatch();
 
-  const sortSteps = steps.slice().sort((a: { step: number }, b: { step: number }) => {
-    return a.step - b.step;
+  const sortSteps = sortData(steps);
+  const dataStep = sortSteps.filter(step => step.path === router.query.path);
+
+  const positionStep = sortSteps.findIndex(element => {
+    if (element.step == dataStep[0].step) {
+      return true;
+    }
   });
 
-  const validatePath = sortSteps.filter(a => a.path === router.query.path);
-
-  useEffect(() => {
-    if (validatePath.length === 0) {
-      router.push(`/`);
-    } else {
-      const positionStep = sortSteps.findIndex(element => {
-        if (element.step == validatePath[0].step) {
-          return true;
-        }
-      });
-      setLoading(true);
-      dispatch(setSteps(sortSteps));
-      dispatch(setStep(positionStep));
-    }
-  }, []);
-
   const backStep = () => {
-    if (step > 0) {
-      dispatch(decrementStep());
-      router.push(`/vender/${sortSteps[step - 1].path}`);
-    } else {
+    if (positionStep === 0) {
       router.push(`/`);
+    } else {
+      router.push(`/vender/${sortSteps[positionStep - 1].path}`);
     }
   };
 
   const nextStep = () => {
-    if (step < sortSteps.length - 1) {
-      dispatch(incrementStep());
-      router.push(`/vender/${sortSteps[step + 1].path}`);
+    if (positionStep + 1 !== sortSteps.length) {
+      router.push(`/vender/${sortSteps[positionStep + 1].path}`);
+    } else {
+      console.log('ultimo paso');
     }
   };
 
+  useEffect(() => {
+    if (positionStep + 1 === sortSteps.length) {
+      setTextBtn(TEXTS.detail);
+    } else {
+      setTextBtn(TEXTS.next);
+    }
+  });
+
+  useEffect(() => {
+    if (dataStep.length === 0) {
+      router.push(`/`);
+    } else {
+      dispatch(setSteps(sortSteps));
+      dispatch(setStep(dataStep[0].step));
+      setLoading(true);
+    }
+  }, []);
+
   return (
-    <Layout>
-      <Container className="container--item">
-        {loading && (
-          <>
-            <Btn type="button" text="Atras" clickHandler={() => backStep()} className="btn--back">
-              <FaArrowLeft />
-            </Btn>
-            <Step
-              step={validatePath[0]}
-              numStep={step}
-              numMax={sortSteps.length}
-              nextStep={nextStep}
-            />
-            <Btn
-              type="button"
-              text="Resumen"
-              clickHandler={() => setModal(true)}
-              className="btn--float"
-            />
-          </>
-        )}
-      </Container>
-      <SummaryDesktop steps={sortSteps} />
-      {modal && <Summary steps={sortSteps} clickHandler={() => setModal(false)} />}
-    </Layout>
+    <>
+      {loading && (
+        <div className={styles.path}>
+          <Btn text={TEXTS.back} clickHandler={() => backStep()} className="btn--back">
+            <FaArrowLeft />
+          </Btn>
+          <Step step={dataStep[0]} />
+          <Btn text={TEXTS.summary} clickHandler={() => setModal(true)} className="btn--float" />
+          <Btn text={textBtn} clickHandler={() => nextStep()} className="btn--next" />
+          <SummaryDesktop steps={sortSteps} />
+          {modal && <Summary steps={sortSteps} clickHandler={() => setModal(false)} />}
+        </div>
+      )}
+    </>
   );
 };
 export default StepView;
