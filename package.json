@@ -17,6 +17,7 @@
     "@types/react": "^18.0.25",
     "next": "13.0.5",
     "react": "18.2.0",
+    "react-currency-input-field": "^3.6.9",
     "react-dom": "18.2.0",
     "react-hook-form": "^7.39.6",
     "react-icons": "^4.6.0",

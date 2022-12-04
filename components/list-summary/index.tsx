@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import React, { ReactElement, useEffect, useState } from 'react';
 import styles from './list-summary.module.scss';
+import { formatValue } from 'react-currency-input-field';
 
 type Props = {
   steps: {
@@ -26,6 +27,16 @@ const ListSummary = ({ steps, className }: Props): ReactElement => {
       });
       return values;
     } else {
+      if (step.key === 'monto') {
+        const formattedValue = formatValue({
+          value: data[step.key],
+          groupSeparator: ',',
+          decimalSeparator: '.',
+          prefix: '$',
+        });
+
+        return <span className={styles.summary__text}>{formattedValue}</span>;
+      }
       return <span className={styles.summary__text}>{data[step.key]}</span>;
     }
   };
