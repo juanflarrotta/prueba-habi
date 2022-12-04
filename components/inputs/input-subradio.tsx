@@ -10,16 +10,28 @@ import { nextStep, setLocalStorage } from 'utils/functions';
 import styles from './inputs.module.scss';
 
 type Props = {
-  label: string;
+  valueOption: string;
   name: string;
   position: number;
   validate: {
     value: boolean;
     message: string;
   };
+  optionsRadio: {
+    text: string;
+    inputs: [];
+  }[];
+  nameParent: string;
 };
 
-const InputFile = ({ label, name, position, validate }: Props): ReactElement => {
+const InputSubRadio = ({
+  valueOption,
+  name,
+  position,
+  validate,
+  optionsRadio,
+  nameParent,
+}: Props): ReactElement => {
   const [textBtn, setTextBtn] = useState(TEXTS.next);
   const steps = useSelector(selectValueSteps);
   const router = useRouter();
@@ -32,18 +44,20 @@ const InputFile = ({ label, name, position, validate }: Props): ReactElement => 
   } = useForm();
 
   const onSubmit = data => {
-    let dataFile = { [name]: '' };
-    if (data[name].length !== 0) {
-      dataFile = { [name]: data[name][0].name };
-    }
-    setLocalStorage(dataFile);
+    const newData = {
+      [nameParent]: {
+        value: valueOption,
+        [name]: data[name],
+      },
+    };
+    setLocalStorage(newData);
     nextStep(position, steps, router);
   };
 
   useEffect(() => {
     const getLocalStorage = JSON.parse(localStorage.getItem('keysSteps'));
-    if (getLocalStorage && getLocalStorage[name]) {
-      setValue(name, getLocalStorage[name]);
+    if (getLocalStorage && getLocalStorage[nameParent]) {
+      setValue(name, getLocalStorage[nameParent][name]);
       trigger(name);
     }
     if (position + 1 === steps.length) {
@@ -55,14 +69,21 @@ const InputFile = ({ label, name, position, validate }: Props): ReactElement => 
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <div className={`${styles.input}`}>
-        <label className={styles.input__label}>{label}</label>
-        <input
-          type="file"
-          accept="image/*"
-          className={`${styles.input__input} ${styles.input__input___file}`}
-          {...register(name, validate)}
-        />
+      <div className={styles.input}>
+        {optionsRadio[0].inputs.map((input, index) => {
+          return (
+            <label className={styles.input__label___checkbox} key={`${name}${index}`}>
+              <input
+                name={name}
+                type="radio"
+                className={styles.input__input___checkbox}
+                value={input}
+                {...register(name, validate)}
+              />
+              {input}
+            </label>
+          );
+        })}
         <ErrorMessage
           errors={errors}
           name={name}
@@ -80,4 +101,4 @@ const InputFile = ({ label, name, position, validate }: Props): ReactElement => 
   );
 };
 
-export default InputFile;
+export default InputSubRadio;

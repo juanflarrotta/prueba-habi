@@ -9,7 +9,7 @@ export type Steps = {
   key: string;
   validate: {
     required: {
-      value: string;
+      value: boolean;
       message: string;
     };
   };

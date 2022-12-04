@@ -17,7 +17,7 @@
             margin-right: sizeUnit(3, px);
         }
 
-        &___file {
+        & &___file {
             max-width: fit-content;
         }
 
@@ -29,10 +29,15 @@
         margin-bottom: sizeUnit(1, px);
         color: $color-second;
 
-        &___checkbox {
+        &___checkbox,
+        &___suboption {
             margin: sizeUnit(2, px) 0 0 0;
             cursor: pointer;
             width: fit-content;
+        }
+
+        &___suboption {
+            margin-left: sizeUnit(5, px);
         }
     }
 
