@@ -32,11 +32,10 @@ const InputFile = ({ label, name, position, validate }: Props): ReactElement => 
   } = useForm();
 
   const onSubmit = data => {
-    console.log(data);
-    console.log(data[name][0]);
-
-    const dataFile = { [name]: data[name][0].name };
-
+    let dataFile = { [name]: '' };
+    if (data[name].length !== 0) {
+      dataFile = { [name]: data[name][0].name };
+    }
     setLocalStorage(dataFile);
     nextStep(position, steps, router);
   };

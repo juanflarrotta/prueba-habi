@@ -139,7 +139,7 @@ const steps = [
     key: 'picture',
     validate: {
       required: {
-        value: true,
+        value: false,
         message: '',
       },
     },
