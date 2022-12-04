@@ -8,6 +8,7 @@ import { TEXTS } from '@constants/index';
 import Btn from '@components/btn';
 import { nextStep, setLocalStorage } from 'utils/functions';
 import styles from './inputs.module.scss';
+import CurrencyInput from 'react-currency-input-field';
 
 type Props = {
   label: string;
@@ -21,6 +22,7 @@ type Props = {
 
 const InputCurrency = ({ label, name, position, validate }: Props): ReactElement => {
   const [textBtn, setTextBtn] = useState(TEXTS.next);
+  const [valueInput, setValueInput] = useState('0');
   const steps = useSelector(selectValueSteps);
   const router = useRouter();
   const {
@@ -32,7 +34,7 @@ const InputCurrency = ({ label, name, position, validate }: Props): ReactElement
   } = useForm();
 
   const onSubmit = data => {
-    setLocalStorage(data);
+    setLocalStorage({ [name]: data[name].replace(/\./g, '') });
     nextStep(position, steps, router);
   };
 
@@ -40,6 +42,7 @@ const InputCurrency = ({ label, name, position, validate }: Props): ReactElement
     const getLocalStorage = JSON.parse(localStorage.getItem('keysSteps'));
     if (getLocalStorage && getLocalStorage[name]) {
       setValue(name, getLocalStorage[name]);
+      setValueInput(getLocalStorage[name]);
       trigger(name);
     }
     if (position + 1 === steps.length) {
@@ -53,7 +56,17 @@ const InputCurrency = ({ label, name, position, validate }: Props): ReactElement
     <form onSubmit={handleSubmit(onSubmit)}>
       <div className={styles.input}>
         <label className={styles.input__label}>{label}</label>
-        <input type="number" className={styles.input__input} {...register(name, validate)} />
+        <CurrencyInput
+          id="input-example"
+          name={name}
+          className={styles.input__input}
+          value={valueInput}
+          decimalsLimit={2}
+          onValueChange={value => {
+            setValueInput(value);
+          }}
+          {...register(name, validate)}
+        />
         <ErrorMessage
           errors={errors}
           name={name}
