@@ -95,11 +95,11 @@ const steps = [
     optionsRadio: [
       {
         text: 'Si',
-        options: ['Es cubierto', 'No es cubierto'],
+        inputs: ['Es cubierto', 'No es cubierto'],
       },
       {
         text: 'No',
-        options: [],
+        inputs: [],
       },
     ],
     title: '¿El inmueble cuenta con parqueadero?',
@@ -152,11 +152,11 @@ const steps = [
     optionsRadio: [
       {
         text: 'Si',
-        options: [],
+        inputs: [],
       },
       {
         text: 'No',
-        options: [],
+        inputs: [],
       },
     ],
     title: 'Ascensor',

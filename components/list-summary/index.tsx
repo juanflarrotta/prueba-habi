@@ -17,7 +17,7 @@ const ListSummary = ({ steps, className }: Props): ReactElement => {
   const [data, setData] = useState([]);
 
   const textValue = step => {
-    if (data[step.key] && typeof data[step.key] === 'object') {
+    if (data[step.key] && Object.prototype.toString.call(data[step.key]) === '[object Array]') {
       const values = data[step.key].map((value, index) => {
         return (
           <span className={styles.summary__text} key={`${value}${index}`}>
@@ -26,6 +26,16 @@ const ListSummary = ({ steps, className }: Props): ReactElement => {
         );
       });
       return values;
+    } else if (
+      data[step.key] &&
+      Object.prototype.toString.call(data[step.key]) === '[object Object]'
+    ) {
+      return (
+        <>
+          <span className={styles.summary__text}>{data[step.key].value}</span>
+          <span className={styles.summary__text}>{data[step.key][`sub${step.key}`]}</span>
+        </>
+      );
     } else {
       if (step.key === 'monto') {
         const formattedValue = formatValue({
