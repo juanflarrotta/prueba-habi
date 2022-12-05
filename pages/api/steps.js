@@ -4,14 +4,14 @@ const steps = [
     path: 'nombre-cliente',
     optionInputs: [],
     typeInput: 'text',
-    optionsCheck: [],
     title: 'Nombre y apellido',
     description: 'Queremos saber sobre ti, indicanos tu nombre y tu apellido.',
     key: 'name',
+    optionsRadio: [],
     validate: {
       required: {
         value: true,
-        message: '',
+        message: 'Se necesita un nombre',
       },
       minLength: {
         value: 3,
@@ -24,10 +24,10 @@ const steps = [
     path: 'email-cliente',
     optionInputs: [],
     typeInput: 'email',
-    optionsCheck: [],
     title: 'Email',
     description: 'Indicanos tu correo electronico.',
     key: 'email',
+    optionsRadio: [],
     validate: {
       required: {
         value: true,
@@ -35,15 +35,16 @@ const steps = [
       },
     },
   },
+
   {
     step: 3,
     path: 'direccion-inmueble',
     optionInputs: [],
     typeInput: 'text',
-    optionsCheck: [],
     title: 'Direccion del inmueble',
     description: 'Indicanos la direccion del inmueble.',
     key: 'adress',
+    optionsRadio: [],
     validate: {
       required: {
         value: true,
@@ -56,10 +57,10 @@ const steps = [
     path: 'numero-piso',
     optionInputs: [],
     typeInput: 'number',
-    optionsCheck: [],
     title: 'Numero de piso',
     description: 'Indicanos el numero de piso que se encuentra el inmueble.',
     key: 'flat',
+    optionsRadio: [],
     validate: {
       required: {
         value: true,
@@ -76,10 +77,10 @@ const steps = [
     path: 'zonas-inmueble',
     optionInputs: ['Zona BBQ', 'Salon comunal', 'Parque de juegos'],
     typeInput: 'checkbox',
-    optionsCheck: [],
     title: 'Zonas del inmueble',
     description: 'Indicanos las zonas de tu inmueble.',
     key: 'areas',
+    optionsRadio: [],
     validate: {
       required: {
         value: false,
@@ -91,11 +92,20 @@ const steps = [
     step: 6,
     path: 'parqueadero',
     optionInputs: [],
-    typeInput: 'checkbox',
-    optionsCheck: ['Es cubierto', 'No es cubierto'],
+    typeInput: 'radio',
     title: '¿El inmueble cuenta con parqueadero?',
     description: 'Indicanos si tiene parqueadero el inmueble.',
     key: 'parking',
+    optionsRadio: [
+      {
+        text: 'Si',
+        inputs: ['Es cubierto', 'No es cubierto'],
+      },
+      {
+        text: 'No',
+        inputs: [],
+      },
+    ],
     validate: {
       required: {
         value: true,
@@ -107,11 +117,11 @@ const steps = [
     step: 7,
     path: 'monto-inmueble',
     optionInputs: [],
-    typeInput: 'text',
-    optionsCheck: [],
+    typeInput: 'currency',
     title: 'Precio del inmueble',
     description: 'Indicanos el valor del inmueble.',
     key: 'monto',
+    optionsRadio: [],
     validate: {
       required: {
         value: true,
@@ -124,13 +134,13 @@ const steps = [
     path: 'imagen-inmueble',
     optionInputs: [],
     typeInput: 'file',
-    optionsCheck: [],
     title: 'Foto',
     description: 'Sube una foto de tu inmueble.',
     key: 'picture',
+    optionsRadio: [],
     validate: {
       required: {
-        value: true,
+        value: false,
         message: '',
       },
     },
@@ -139,11 +149,20 @@ const steps = [
     step: 9,
     path: 'ascensor',
     optionInputs: [],
-    typeInput: 'checkbox',
-    optionsCheck: [],
+    typeInput: 'radio',
     title: 'Ascensor',
     description: '¿El conjunto tiene ascensor?',
     key: 'lift',
+    optionsRadio: [
+      {
+        text: 'Si',
+        inputs: [],
+      },
+      {
+        text: 'No',
+        inputs: [],
+      },
+    ],
     validate: {
       required: {
         value: true,

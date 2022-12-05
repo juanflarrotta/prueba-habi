@@ -18,17 +18,11 @@
     "paths": {
       "@components/*": ["components/*"],
       "@styles/*": ["styles/*"],
-      "@redux/*": ["redux/*"]
-    }
+      "@redux/*": ["redux/*"],
+      "@constants/*": ["constants/*"]
+    },
+    "types": ["jest", "node", "@types/testing-library__jest-dom"]
   },
-  "include": [
-    "next-env.d.ts",
-    "**/*.ts",
-    "**/*.tsx",
-    "lint-staged.config.js",
-    "next.config.js",
-    "next.config.js",
-    "lint-staged.config.js"
-  ],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.js", "**/*.tsx", "components/btn/index.test.jsx"],
   "exclude": ["node_modules"]
 }

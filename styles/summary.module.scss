@@ -1,0 +1,11 @@
+@import './variables.scss';
+
+.summary {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    padding: sizeUnit(6, px);
+    max-width: sizeUnit(150, px);
+    margin: 0 auto;
+}

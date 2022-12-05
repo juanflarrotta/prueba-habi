@@ -1,39 +1,49 @@
-import React, { ReactElement, useEffect } from 'react';
+import React, { ReactElement, useEffect, useState } from 'react';
 
-import { useDispatch } from 'react-redux';
-import { setSteps } from 'redux/slices/stepsSlice';
 import { useRouter } from 'next/router';
+import { sortData } from 'utils/functions';
+import { Steps } from 'types';
 
 import Background from '@components/background';
-import { Steps } from 'types';
 import Btn from '@components/btn';
-import Container from '@components/container';
+import { TEXTS } from '@constants/index';
+import styles from '@styles/home.module.scss';
 
 type Props = {
   steps: Steps;
 };
 
 const Home = ({ steps }: Props): ReactElement => {
+  const [active, setActive] = useState(false);
   const router = useRouter();
-  const dispatch = useDispatch();
-
-  const sortSteps = steps.slice().sort((a: { step: number }, b: { step: number }) => {
-    return a.step - b.step;
-  });
+  const sortSteps = sortData(steps);
 
   const newSale = () => {
     router.push(`/vender/${sortSteps[0].path}`);
   };
 
+  const apartmentsView = () => {
+    router.push(`/apartamentos/`);
+  };
+
   useEffect(() => {
-    dispatch(setSteps(steps));
+    const getLocalStorage = JSON.parse(localStorage.getItem('apartments'));
+    if (!getLocalStorage) {
+      setActive(true);
+    }
   }, []);
 
   return (
-    <Container>
+    <div className={styles.home}>
       <Background />
-      <Btn text="Vender" clickHandler={() => newSale()} className="btn--bottom" type="button" />
-    </Container>
+      <Btn text={TEXTS.sell} clickHandler={newSale} className="btn--bottom" />
+      <Btn
+        text={TEXTS.apartments}
+        disabled={active}
+        clickHandler={apartmentsView}
+        className="btn--bottom"
+      />
+    </div>
   );
 };
 export default Home;

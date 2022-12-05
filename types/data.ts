@@ -4,11 +4,16 @@ export type Steps = {
   optionInputs: [];
   typeInput: string;
   title: string;
-  optionsCheck: [];
   description: string;
   key: string;
   validate: {
-    value: any;
-    message: string;
+    required: {
+      value: boolean;
+      message: string;
+    };
   };
+  optionsRadio: {
+    text: string;
+    inputs: [];
+  }[];
 }[];

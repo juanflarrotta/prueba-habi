@@ -7,15 +7,15 @@ type Props = {
   disabled?: boolean;
   className?: string;
   children?: ReactNode;
-  type: 'button' | 'submit' | 'reset';
+  type?: 'button' | 'submit' | 'reset';
 };
 const Btn = ({ text, clickHandler, disabled, className, children, type }: Props): ReactElement => {
   const newClass = className ? styles[className] : '';
   return (
     <button
-      type={type}
+      type={type ? type : 'button'}
       className={`${styles.btn} ${newClass}`}
-      onClick={clickHandler}
+      onClick={() => clickHandler()}
       disabled={disabled}
     >
       {children}

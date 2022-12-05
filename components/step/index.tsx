@@ -1,48 +1,93 @@
+import InputCheckbox from '@components/inputs/input-checkbox';
+import InputRadio from '@components/inputs/input-radio';
+import InputEmail from '@components/inputs/input-email';
+import InputNumber from '@components/inputs/input-number';
+import InputText from '@components/inputs/input-text';
+import InputCurrency from '@components/inputs/input-currency';
+import { selectValueSteps } from '@redux/slices/stepsSlice';
 import React, { ReactElement } from 'react';
+import { useSelector } from 'react-redux';
 import styles from './step.module.scss';
-import InputDefault from './inputDefault';
-import InputCheckbox from './inputCheckbox';
-import InputListCheckbox from './inputListCheckbox';
-import InputFile from './inputFile';
+import InputFile from '@components/inputs/input-file';
 
 type Props = {
   step: {
-    title: string;
     description: string;
+    step: number;
     typeInput: string;
+    title: string;
     key: string;
-    optionInputs: [];
-    optionsCheck: [];
     validate: {
-      value: number | string | boolean;
-      message: string;
+      required: {
+        value: boolean;
+        message: string;
+      };
     };
+    optionInputs: [];
+    optionsRadio: {
+      text: string;
+      inputs: [];
+    }[];
   };
-  numStep: number;
-  numMax: number;
-  nextStep?: () => void;
+  position: number;
 };
-const Step = ({ step, numStep, numMax, nextStep }: Props): ReactElement => {
-  const renderForm = () => {
-    if (step.optionInputs.length > 0) {
-      return (
-        <InputListCheckbox step={step} nextStep={nextStep} numStep={numStep} numMax={numMax} />
-      );
-    } else if (step.typeInput === 'file') {
-      return <InputFile step={step} nextStep={nextStep} numStep={numStep} numMax={numMax} />;
-    } else if (step.optionsCheck.length > 0) {
-      return <InputCheckbox step={step} nextStep={nextStep} numStep={numStep} numMax={numMax} />;
-    } else {
-      return <InputDefault step={step} nextStep={nextStep} numStep={numStep} numMax={numMax} />;
-    }
+
+const Step = ({ step, position }: Props): ReactElement => {
+  const steps = useSelector(selectValueSteps);
+
+  const inputs = {
+    text: () => (
+      <InputText label={step.title} name={step.key} position={position} validate={step.validate} />
+    ),
+    email: () => (
+      <InputEmail label={step.title} name={step.key} position={position} validate={step.validate} />
+    ),
+    number: () => (
+      <InputNumber
+        label={step.title}
+        name={step.key}
+        position={position}
+        validate={step.validate}
+      />
+    ),
+    checkbox: () => (
+      <InputCheckbox
+        label={step.title}
+        name={step.key}
+        position={position}
+        validate={step.validate}
+        optionInputs={step.optionInputs}
+      />
+    ),
+    radio: () => (
+      <InputRadio
+        label={step.title}
+        name={step.key}
+        position={position}
+        validate={step.validate}
+        optionsRadio={step.optionsRadio}
+      />
+    ),
+    currency: () => (
+      <InputCurrency
+        label={step.title}
+        name={step.key}
+        position={position}
+        validate={step.validate}
+      />
+    ),
+    file: () => (
+      <InputFile label={step.title} name={step.key} position={position} validate={step.validate} />
+    ),
   };
 
   return (
     <div className={styles.step}>
-      <h3 className={styles.step__title}>{`Paso ${numStep + 1} de ${numMax}`}</h3>
+      <h3 className={styles.step__title}>{`Paso ${step.step} de ${steps.length}`}</h3>
       <p className={styles.step__description}>{step.description}</p>
-      {renderForm()}
+      {inputs[step.typeInput] ? inputs[step.typeInput]() : ''}
     </div>
   );
 };
+
 export default Step;

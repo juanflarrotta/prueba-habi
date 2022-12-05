@@ -1,0 +1,28 @@
+@import './variables.scss';
+
+.apartments {
+    width: 100%;
+
+    &__content {
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        position: relative;
+        padding: sizeUnit(6, px);
+        max-width: sizeUnit(150, px);
+        margin: 0 auto;
+    }
+
+}
+
+@media (min-width: $tablet) {
+    .apartments {
+        &__list {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            gap: 16px;
+            text-align: center;
+        }
+    }
+}

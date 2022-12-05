@@ -1,0 +1,36 @@
+@import '../../styles/variables.scss';
+
+.summary {
+
+    &__list {
+        background-color: $color-white;
+        color: $color-black;
+        width: 100%;
+        height: 100%;
+        padding: sizeUnit(3, px);
+        list-style: none;
+        overflow: auto;
+        border-radius: $border-radius-box;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        max-width: sizeUnit(75, px);
+        align-self: center;
+    }
+
+    &__item {
+        margin-bottom: sizeUnit(2, px);
+    }
+
+    &__title {
+        text-transform: capitalize;
+        min-width: sizeUnit(3, px);
+        color: $color-first;
+    }
+
+    &__text {
+        display: block;
+        margin: sizeUnit(0.5, px) sizeUnit(2, px);
+        text-transform: uppercase;
+    }
+}
