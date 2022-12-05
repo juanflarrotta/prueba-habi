@@ -18,13 +18,15 @@ type Props = {
     title: string;
     key: string;
     validate: {
-      value: boolean;
-      message: string;
+      required: {
+        value: boolean;
+        message: string;
+      };
     };
     optionInputs: [];
     optionsRadio: {
       text: string;
-      options: [];
+      inputs: [];
     }[];
   };
   position: number;

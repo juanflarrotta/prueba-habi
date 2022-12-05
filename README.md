@@ -134,3 +134,7 @@ Cuando se crea una nueva rama de `develop` y se termina el desarrollo se debe ha
 Para los test utilizamos la librería `jest`, la cual se pueden probar los estados de los componentes después de renderizarlo, también se puede comprobar todos los criterios de aceptación e incluso poder hacer end2end testing que nos ayuda a probar la aplicación haciendo una simulación del renderizado del navegador.
 
 Se hizo test en el componente `Btn` el cual hacemos una prueba para cada prop que recibe y así verificar que el renderizado está acorde a lo requerido.
+
+## Extra
+
+Al acabar todos los pasos exitosamente se guardan en `localStorage` para tener los inmuebles que quiere vender el usuario, se crea una nueva page con la ruta `http://localhost:3000/apartamentos` donde se pueden ver los inmuebles que ha creado el usuario, para entrar a esta url hay un boton en el home que se habilita cuando el usuario completo el registro de un inmueble.

@@ -1,4 +1,4 @@
-import React, { ReactElement } from 'react';
+import React, { ReactElement, useEffect, useState } from 'react';
 
 import { useRouter } from 'next/router';
 import { sortData } from 'utils/functions';
@@ -14,6 +14,7 @@ type Props = {
 };
 
 const Home = ({ steps }: Props): ReactElement => {
+  const [active, setActive] = useState(false);
   const router = useRouter();
   const sortSteps = sortData(steps);
 
@@ -21,10 +22,27 @@ const Home = ({ steps }: Props): ReactElement => {
     router.push(`/vender/${sortSteps[0].path}`);
   };
 
+  const apartmentsView = () => {
+    router.push(`/apartamentos/`);
+  };
+
+  useEffect(() => {
+    const getLocalStorage = JSON.parse(localStorage.getItem('apartments'));
+    if (!getLocalStorage) {
+      setActive(true);
+    }
+  }, []);
+
   return (
     <div className={styles.home}>
       <Background />
       <Btn text={TEXTS.sell} clickHandler={newSale} className="btn--bottom" />
+      <Btn
+        text={TEXTS.apartments}
+        disabled={active}
+        clickHandler={apartmentsView}
+        className="btn--bottom"
+      />
     </div>
   );
 };

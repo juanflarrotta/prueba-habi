@@ -14,8 +14,10 @@ type Props = {
   name: string;
   position: number;
   validate: {
-    value: boolean;
-    message: string;
+    required: {
+      value: boolean;
+      message: string;
+    };
   };
   optionsRadio: {
     text: string;
