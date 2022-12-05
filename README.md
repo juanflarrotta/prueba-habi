@@ -52,7 +52,7 @@ Se utilizó un sass para cada componente ya que next nos ayuda a independizar ca
 
 ### TS/React
 
-Se dividió el proyecto en componentes que se encuentran en la carpeta `components` estas contienen el .tsx conde está alojado cada componente con sus eventos, lógica y estados para cambiar controladamente los componentes, en el .scss se encuentran los estilos para ese componente.
+Se dividió el proyecto en componentes que se encuentran en la carpeta `components` estas contienen el .tsx donde está alojado cada componente con sus eventos, lógica y estados para cambiar controladamente los componentes, en el .scss se encuentran los estilos para ese componente.
 
 Con nextJs podemos encontrar en la carpeta pages todas las páginas o rutas que existen en nuestra aplicación, en la carpeta api podemos encontrar los endPoint los cuales tienen un handler que podemos consumir, en este caso podemos consumir los pasos para armar nuestro paso a paso.
 
@@ -76,7 +76,7 @@ la estructura de datos es la siguiente:
 
 ```bash
 
-	"steps": [                             `Array de pasos`
+	"steps": [                         `Array de pasos`
          {
             "step": "string",              `El numero de paso`
             "path": "string",              `La ruta del paso`
