@@ -14,6 +14,6 @@ export type Steps = {
   };
   optionsRadio: {
     text: string;
-    options: [];
+    inputs: [];
   }[];
 }[];

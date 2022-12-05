@@ -6,6 +6,7 @@ import { useEffect } from 'react';
 import { Steps } from 'types';
 import { sortData } from 'utils/functions';
 import styles from '@styles/summary.module.scss';
+import { useRouter } from 'next/router';
 
 type Props = {
   steps: Steps;
@@ -14,6 +15,7 @@ type Props = {
 const SummaryFinish = ({ steps }: Props): ReactElement => {
   const [dataLocalStorage, setDataLocalStorage] = useState({});
   const sortSteps = sortData(steps);
+  const router = useRouter();
 
   const validateData = () => {
     const validate = sortSteps.filter(step => {
@@ -25,7 +27,15 @@ const SummaryFinish = ({ steps }: Props): ReactElement => {
     if (validate.length !== 0 && validate[0].validate.required.value === true) {
       alert(`Falta completar el campo ${validate[0].title}`);
     } else {
-      console.log('Data validada');
+      const getLocalStorageApartments = JSON.parse(localStorage.getItem('apartments'));
+      if (getLocalStorageApartments !== null) {
+        getLocalStorageApartments.push(dataLocalStorage);
+        localStorage.setItem('apartments', JSON.stringify(getLocalStorageApartments));
+      } else {
+        localStorage.setItem('apartments', JSON.stringify([dataLocalStorage]));
+      }
+      localStorage.removeItem('keysSteps');
+      router.push(`/`);
     }
   };
 

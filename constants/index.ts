@@ -5,4 +5,5 @@ export const TEXTS = {
   next: 'Siguiente',
   detail: 'Ver informacion',
   finish: 'Finalizar',
+  apartments: 'Ver mis inmuebles',
 };
